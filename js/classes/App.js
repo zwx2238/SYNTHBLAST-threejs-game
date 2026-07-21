@@ -1,4 +1,4 @@
-import * as THREE from "../../lib/three/build/three.module.js";
+import * as THREE from "three";
 import Game from "../../js/classes/Game.js";
 import LevelScreen from "./ui/LevelScreen.js";
 import MenuScreen from "./ui/MenuScreen.js";

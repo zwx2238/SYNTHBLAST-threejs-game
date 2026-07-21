@@ -1,3 +1,5 @@
+import * as PIXI from "pixi.js";
+
 class ProgressBar {
     constructor(x, y, width, height, stage, color) {
         this.x = x;

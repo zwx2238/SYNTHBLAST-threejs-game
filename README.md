@@ -29,10 +29,14 @@
 ## Installation
 Easiest way to try it out is on [SYNTHBLAST.COM](https://synthblast.com) which has the latest version
 
-To run locally, in addition to the files in this repository, you'll also need several libraries set up in the following directory structure:
-* lib/three/build/three.module.js
-* lib/pixi.min.js
-* node_modules/stats.js/build/stats.min.js
+To run locally, install the pinned dependencies and start the Vite development server:
+
+```sh
+npm ci
+npm run dev
+```
+
+Create a production build with `npm run build`. The generated site is written to `dist/`.
 
 ## Discussions:
 * [Hacker News](https://news.ycombinator.com/item?id=32379430)

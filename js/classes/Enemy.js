@@ -1,4 +1,4 @@
-import * as THREE from "../../lib/three/build/three.module.js";
+import * as THREE from "three";
 import * as Utils from "../Utils.js";
 import Particle from "./Particle.js";
 

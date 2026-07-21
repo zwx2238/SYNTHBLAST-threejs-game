@@ -9,9 +9,9 @@ import {
     RGBFormat,
     ShaderMaterial,
     UniformsUtils
-} from "../lib/three/build/three.module.js";
-import {Pass} from "../lib/three/examples/jsm/postprocessing/Pass.js";
-import {DigitalGlitch} from "../lib/three/examples/jsm/shaders/DigitalGlitch.js";
+} from "three";
+import {Pass} from "three/examples/jsm/postprocessing/Pass.js";
+import {DigitalGlitch} from "three/examples/jsm/shaders/DigitalGlitch.js";
 
 var GlitchPass = function (dt_size) {
 

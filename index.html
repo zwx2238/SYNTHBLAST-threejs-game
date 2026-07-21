@@ -36,11 +36,11 @@
 </head>
 <body>
 <!--<script src='js/Facebook.js'></script>-->
-<script src='node_modules/stats.js/build/stats.min.js'></script>
-<script src='lib/pixi.min.js'></script>
 <script type="module">
 
-    import * as THREE from "./lib/three/build/three.module.js";
+    import * as THREE from "three";
+    import * as PIXI from "pixi.js";
+    import Stats from "stats.js";
     import Game from "./js/classes/Game.js";
     import LevelScreen from "./js/classes/ui/LevelScreen.js";
     import MenuScreen from "./js/classes/ui/MenuScreen.js";

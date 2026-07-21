@@ -1,3 +1,4 @@
+import * as PIXI from "pixi.js";
 import LabeledProgressBar from "./LabeledProgressBar.js";
 import Screen from "./Screen.js";
 

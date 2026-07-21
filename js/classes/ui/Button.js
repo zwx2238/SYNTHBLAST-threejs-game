@@ -1,3 +1,5 @@
+import * as PIXI from "pixi.js";
+
 class Button {
 
     constructor(x, y, width, height, stage, label, callback) {

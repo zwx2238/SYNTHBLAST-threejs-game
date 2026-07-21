@@ -1,9 +1,9 @@
-import * as THREE from "../../lib/three/build/three.module.js";
+import * as THREE from "three";
 import * as Utils from "../../js/Utils.js";
 
 // Three.js classes
-import {EffectComposer} from '../../lib/three/examples/jsm/postprocessing/EffectComposer.js';
-import {RenderPass} from '../../lib/three/examples/jsm/postprocessing/RenderPass.js';
+import {EffectComposer} from 'three/examples/jsm/postprocessing/EffectComposer.js';
+import {RenderPass} from 'three/examples/jsm/postprocessing/RenderPass.js';
 import {GlitchPass} from '../../js/CustomGlitchPass.js';
 
 // my classes

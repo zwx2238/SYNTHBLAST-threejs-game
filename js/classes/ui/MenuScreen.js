@@ -1,3 +1,4 @@
+import * as PIXI from "pixi.js";
 import Button from "./Button.js";
 import Screen from "./Screen.js";
 
