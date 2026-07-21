@@ -22,9 +22,8 @@ class MenuScreen extends Screen {
         let x = (this.game.width - buttonWidth) / 2;
 
         let fill = new PIXI.Graphics();
-        fill.beginFill(0x000000);
+        fill.rect(x, y, buttonWidth, allHeight).fill(0x000000);
         fill.alpha = .8;
-        fill.drawRect(x, y, buttonWidth, allHeight);
         this.fill = fill;
         this.pixiStage.addChild(fill);
 
@@ -101,7 +100,10 @@ class MenuScreen extends Screen {
     }
 
     onDocumentKeyDown(event) {
-
+        if (event.code === "Space" || event.code === "Enter") {
+            event.preventDefault();
+            this.uiCallbacks.pressPlay();
+        }
     }
 
     onDocumentKeyUp(event) {
@@ -125,7 +127,7 @@ class MenuScreen extends Screen {
     }
 
     render() {
-        this.rendererPixi.render(this.pixiStage, undefined, false);
+        this.rendererPixi.render({container: this.pixiStage, clear: false});
     }
 }
 

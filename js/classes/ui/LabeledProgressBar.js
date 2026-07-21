@@ -18,13 +18,12 @@ class LabeledProgressBar {
             fill: "#99FFFF",
         });
 
-        this.labelText = new PIXI.Text(label, labelStyle);
+        this.labelText = new PIXI.Text({text: label, style: labelStyle});
 
         let bkgnd = new PIXI.Graphics();
-        bkgnd.beginFill(0x000000);
         let padding = 3;
         bkgnd.alpha = 1;
-        bkgnd.drawRect(x - (padding + this.labelText.width + 5) , y, width + ( padding + this.labelText.width + 5), height );
+        bkgnd.rect(x - (padding + this.labelText.width + 5), y, width + (padding + this.labelText.width + 5), height).fill(0x000000);
         stage.addChild(bkgnd);
 
         this.progressBar = new ProgressBar(

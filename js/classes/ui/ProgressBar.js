@@ -11,23 +11,21 @@ class ProgressBar {
         this.percent = 0;
 
         let bkgnd = new PIXI.Graphics();
-        bkgnd.beginFill(0x000000);
+        bkgnd.rect(x, y, width, height).fill(0x000000);
         bkgnd.alpha = 1;
-        bkgnd.drawRect(x, y, width, height );
         stage.addChild(bkgnd);
+
+        this.bar = new PIXI.Graphics();
+        stage.addChild(this.bar);
 
     }
 
     setProgress(percent) {
-        this.stage.removeChild(this.bar);
         this.percent = percent;
-        let bar = new PIXI.Graphics();
         let newWidth =  this.width * percent;
         let delta = this.width - newWidth;
-        bar.beginFill(this.color);
-        bar.drawRect(this.x + delta, this.y, newWidth, this.height);
-        this.bar = bar;
-        this.stage.addChild(bar);
+        this.bar.clear();
+        this.bar.rect(this.x + delta, this.y, newWidth, this.height).fill(this.color);
     }
 
 

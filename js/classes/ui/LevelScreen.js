@@ -49,23 +49,21 @@ class LevelScreen extends Screen {
             this.pixiStage.addChild(this.b9);
 
             this.bFire = new PIXI.Graphics();
-            this.bFire.beginFill(0xFF00FF);
-            this.bFire.drawEllipse(
+            this.bFire.ellipse(
                 this.game.width - (this.bWidth * 1.5),
                 this.game.height - (this.bWidth * 1.5),
                 this.bWidth,
-                this.bWidth);
+                this.bWidth).fill(0xFF00FF);
             this.bFire.alpha = 0.6;
             this.bFire.visible = false; // initially hidden
             this.pixiStage.addChild(this.bFire);
 
             let fireOutline = new PIXI.Graphics();
-            fireOutline.lineStyle(2, 0xCC88CC, 1);
-            fireOutline.drawEllipse(
+            fireOutline.ellipse(
                 this.game.width - (this.bWidth * 1.5),
                 this.game.height - (this.bWidth * 1.5),
                 this.bWidth,
-                this.bWidth);
+                this.bWidth).stroke({width: 2, color: 0xCC88CC});
             this.pixiStage.addChild(fireOutline);
 
             // grid
@@ -93,16 +91,16 @@ class LevelScreen extends Screen {
                 fontFamily: "\"Courier New\", Courier, monospace",
                 fontSize: 14,
                 fill: "#00FFFF",
-                stroke: '#ff00FF',
-                strokeThickness: 1,
-                dropShadow: true,
-                dropShadowColor: "#000000",
-                dropShadowBlur: 2,
-                dropShadowAngle: 0,
-                dropShadowDistance: 0,
+                stroke: {color: '#ff00FF', width: 1},
+                dropShadow: {
+                    color: "#000000",
+                    blur: 2,
+                    angle: 0,
+                    distance: 0,
+                },
             });
 
-            this.instructionText = new PIXI.Text('ARROW KEYS TO MOVE; SPACE TO FIRE.', instructionStyle);
+            this.instructionText = new PIXI.Text({text: 'ARROW KEYS TO MOVE; SPACE TO FIRE.', style: instructionStyle});
             this.instructionText.position.set(10, this.game.height - 50);
             this.pixiStage.addChild(this.instructionText);
         }
@@ -113,7 +111,7 @@ class LevelScreen extends Screen {
             fill: "#99DDDD",
         });
 
-        this.statusText = new PIXI.Text("", statusStyle);
+        this.statusText = new PIXI.Text({text: "", style: statusStyle});
         this.statusText.position.set(10, 50);
         this.pixiStage.addChild(this.statusText);
 
@@ -123,13 +121,14 @@ class LevelScreen extends Screen {
             fontSize: finalSize,
             fill: "#99FFFF",
             align: "center",
-            dropShadow: true,
-            dropShadowBlur: 10,
-            dropShadowDistance: 0,
-            dropShadowAlpha: 0.5
+            dropShadow: {
+                blur: 10,
+                distance: 0,
+                alpha: 0.5,
+            }
         });
 
-        this.finalText = new PIXI.Text("", finalStyle);
+        this.finalText = new PIXI.Text({text: "", style: finalStyle});
         this.finalText.position.set(this.game.width / 2, (this.game.height - finalSize) / 2);
         this.pixiStage.addChild(this.finalText);
 
@@ -146,8 +145,7 @@ class LevelScreen extends Screen {
 
     getSquare(x, y, width) {
         let square = new PIXI.Graphics();
-        square.beginFill(0xFF00FF);
-        square.drawRect(x, y, width, width);
+        square.rect(x, y, width, width).fill(0xFF00FF);
         square.alpha = 0.6;
         square.visible = false; // initially hidden
         return square;
@@ -159,9 +157,8 @@ class LevelScreen extends Screen {
 
     getLine(x1, y1, x2, y2, thickness) {
         let line = new PIXI.Graphics();
-        line.lineStyle(thickness, 0xCC88CC, 1);
         line.moveTo(x1, y1);
-        line.lineTo(x2, y2);
+        line.lineTo(x2, y2).stroke({width: thickness, color: 0xCC88CC});
         return line;
     }
 
@@ -397,7 +394,7 @@ class LevelScreen extends Screen {
         this.padProgress.setProgress(padPercent);
 
         // final rendering
-        this.rendererPixi.render(this.pixiStage, undefined, false);
+        this.rendererPixi.render({container: this.pixiStage, clear: false});
     }
 }
 

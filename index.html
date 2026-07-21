@@ -121,32 +121,34 @@
     stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
     document.body.appendChild(stats.dom);
 
-    init();
-    animate();
+    init().then(animate);
 
     function animate() {
         stats.begin();
-        rendererThree.state.reset();
+        rendererThree.resetState();
         render3d();
-        rendererThree.state.reset();
+        rendererThree.resetState();
 
-        rendererPixi.reset();
+        rendererPixi.resetState();
         render2d();
-        rendererPixi.reset();
+        rendererPixi.resetState();
 
         calculateFps();
         stats.end();
         requestAnimationFrame(animate);
     }
 
-    function init() {
+    async function init() {
         let canvas = document.getElementById("screen");
         rendererThree = new THREE.WebGLRenderer({
             canvas: canvas
         });
-        rendererPixi = new PIXI.Renderer({
-            view: canvas,
-            context: rendererThree.getContext()
+        rendererPixi = new PIXI.WebGLRenderer();
+        await rendererPixi.init({
+            canvas: canvas,
+            context: rendererThree.getContext(),
+            width: window.innerWidth,
+            height: window.innerHeight
         });
 
         newGame();
@@ -220,6 +222,7 @@
         game.level.camera.aspect = game.width / game.height;
         game.level.camera.updateProjectionMatrix();
         rendererThree.setSize(game.width, game.height);
+        rendererPixi.resize(game.width, game.height);
         activeScreen.init();
     }
 

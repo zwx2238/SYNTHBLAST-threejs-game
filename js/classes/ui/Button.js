@@ -13,9 +13,8 @@ class Button {
 
         // FILL
         let fill = new PIXI.Graphics();
-        fill.beginFill(0xFF00FF);
+        fill.rect(x, y, width, height).fill(0xFF00FF);
         fill.alpha = 0.35;
-        fill.drawRect(x, y, width, height);
         this.fill = fill;
         stage.addChild(fill);
 
@@ -26,34 +25,33 @@ class Button {
             fill: "#99FFFF",
         });
 
-        let glow = new PIXI.filters.BlurFilter();
-        glow.blur = 8;
+        let glow = new PIXI.BlurFilter({strength: 8});
         this.glow = glow;
 
         // nice, neon glow (blur)
-        this.blurText = new PIXI.Text(label, labelStyle);
-        while (this.blurText.width > width * .9) labelStyle.fontSize -= 1;
+        this.blurText = new PIXI.Text({text: label, style: labelStyle});
+        while (this.blurText.width > width * .9 && labelStyle.fontSize > 8) {
+            labelStyle.fontSize -= 1;
+        }
         this.blurText.position.set(x + (width - this.blurText.width) / 2, y + (height - labelStyle.fontSize) / 2);
         this.blurText.filters = [glow];
         stage.addChild(this.blurText);
 
         // the text
-        this.labelText = new PIXI.Text(label, labelStyle);
+        this.labelText = new PIXI.Text({text: label, style: labelStyle.clone()});
         this.labelText.position.set(x + (width - this.labelText.width) / 2, y + (height - labelStyle.fontSize) / 2);
         stage.addChild(this.labelText);
 
         // button outline glow
         let outlineBlur = new PIXI.Graphics();
-        outlineBlur.lineStyle(1, 0x99FFFF, 1);
-        outlineBlur.drawRect(x, y, width, height);
+        outlineBlur.rect(x, y, width, height).stroke({width: 1, color: 0x99FFFF});
         outlineBlur.filters = [glow];
         this.outlineBlur = outlineBlur;
         stage.addChild(outlineBlur);
 
         // button outline
         let outline = new PIXI.Graphics();
-        outline.lineStyle(2, 0x99FFFF, 1);
-        outline.drawRect(x, y, width, height);
+        outline.rect(x, y, width, height).stroke({width: 2, color: 0x99FFFF});
         outline.alpha = 0.5;
         this.outline = outline;
         stage.addChild(outline);

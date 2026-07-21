@@ -3,7 +3,7 @@ import * as THREE from "three";
 class Building {
 
     constructor(x, y, height, scene, damageable) {
-        let geometry = new THREE.BoxBufferGeometry(1, 1, height);
+        let geometry = new THREE.BoxGeometry(1, 1, height);
         let material = new THREE.MeshPhongMaterial(
             {
                 color: 0x000000,
