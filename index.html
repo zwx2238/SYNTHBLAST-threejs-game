@@ -96,7 +96,8 @@
         flip: new Audio('assets/audio/flip.wav'),
         shield: new Audio('assets/audio/shield.wav'),
         launch: new Audio('assets/audio/launch.wav'),
-        energy: new Audio('assets/audio/energy3.wav')
+        energy: new Audio('assets/audio/energy3.wav'),
+        ammoEmpty: new Audio('assets/audio/ammo_empty.wav')
     };
 
     // Renderers
@@ -168,7 +169,9 @@
     function newGame() {
         let uiCallbacks = {
             pressPlay: pressPlay,
-            newGame: newGame
+            newGame: newGame,
+            isMusicOn: () => musicOn,
+            toggleMusic: toggleMusic
         };
         game = new Game(rendererThree, sounds, window.innerWidth, window.innerHeight);
         levelUi = new LevelScreen(game, rendererPixi, sounds, uiCallbacks);
@@ -214,6 +217,17 @@
 
     function pressPlay() {
         activeScreen = levelUi;
+    }
+
+    function toggleMusic() {
+        musicOn = !musicOn;
+        if (musicOn) {
+            startAudio();
+        } else {
+            songs.motel_bedroom.pause();
+            songs.isSongPlaying = false;
+        }
+        return musicOn;
     }
 
     function resize() {

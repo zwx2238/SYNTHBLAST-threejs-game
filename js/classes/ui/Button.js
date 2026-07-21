@@ -62,6 +62,14 @@ class Button {
         return x >= this.x && x <= this.x + this.width && y >= this.y && y <= this.y + this.height;
     }
 
+    setLabel(label) {
+        this.label = label;
+        this.blurText.text = label;
+        this.labelText.text = label;
+        this.blurText.x = this.x + (this.width - this.blurText.width) / 2;
+        this.labelText.x = this.x + (this.width - this.labelText.width) / 2;
+    }
+
     down(event) {
         if (this.isIn(event.clientX, event.clientY)) {
             this.fill.alpha = .7;

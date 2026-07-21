@@ -3,15 +3,21 @@ import Bullet from "./Bullet.js";
 
 class Gun {
 
-    constructor(scene, bullets, hero, pew) {
+    constructor(scene, bullets, hero, pew, ammoEmpty) {
         this.lastFired = 0;
         this.scene = scene;
         this.bullets = bullets;
         this.hero = hero;
         this.pew = pew;
+        this.ammoEmpty = ammoEmpty;
         this.bulletZ = 0.3;
         this.bulletSize = .05;
         this.recharge = 150;
+    }
+
+    playEmpty() {
+        this.ammoEmpty.currentTime = 0;
+        this.ammoEmpty.play();
     }
 
     fire(soundOn, fpsAdjustment) {

@@ -13,7 +13,7 @@ class MenuScreen extends Screen {
         if (this.pixiStage) this.pixiStage.destroy(true);
         this.pixiStage = new PIXI.Container();
         this.elements = [];
-        let numberOfButtons = 2;
+        let numberOfButtons = 3;
         let buttonWidth = Math.max(this.game.width / 3, 350);
         let buttonHeight = Math.min(this.game.height / 15, 70);
         let buttonSpacing = Math.min(this.game.height / 30, 30);
@@ -31,6 +31,22 @@ class MenuScreen extends Screen {
         this.elements.push(
             new Button(x, y, buttonWidth, buttonHeight, this.pixiStage, "P ^ Ł * 4 ^ ¥", this.uiCallbacks.pressPlay)
         );
+        y += buttonHeight + buttonSpacing;
+
+        let musicButton;
+        musicButton = new Button(
+            x,
+            y,
+            buttonWidth,
+            buttonHeight,
+            this.pixiStage,
+            this.uiCallbacks.isMusicOn() ? "Music: on" : "Music: off",
+            () => {
+                let isOn = this.uiCallbacks.toggleMusic();
+                musicButton.setLabel(isOn ? "Music: on" : "Music: off");
+            }
+        );
+        this.elements.push(musicButton);
         y += buttonHeight + buttonSpacing;
 
         this.elements.push(

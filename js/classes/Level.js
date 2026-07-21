@@ -193,7 +193,7 @@ class Level {
             comets.push(new Comet(scene, Utils.randomInt(5) + 5));
         }
 
-        gun = new Gun(scene, bullets, game.hero, this.sounds.pew);
+        gun = new Gun(scene, bullets, game.hero, this.sounds.pew, this.sounds.ammoEmpty);
         game.hero.setGun(gun);
 
         // floor

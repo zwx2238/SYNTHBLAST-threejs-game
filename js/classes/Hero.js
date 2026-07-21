@@ -272,7 +272,11 @@ class Hero {
     }
 
     startShooting() {
+        if (this.isShooting) return;
         this.isShooting = true;
+        if (this.ammo <= 0) {
+            this.gun.playEmpty();
+        }
     }
 
     stopShooting() {
