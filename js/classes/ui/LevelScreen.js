@@ -138,7 +138,8 @@ class LevelScreen extends Screen {
         let progressHeight = 10;
         this.hpProgress =       new LabeledProgressBar(this.game.width - progressWidth, 10, progressWidth - rightMargin, progressHeight, this.pixiStage, "ARMOR",  0xFF00FF);
         this.shileldProgress =  new LabeledProgressBar(this.game.width - progressWidth, 25, progressWidth - rightMargin, progressHeight, this.pixiStage, "SHIELD", 0x8800FF);
-        this.padProgress =      new LabeledProgressBar(this.game.width - progressWidth, 40, progressWidth - rightMargin, progressHeight, this.pixiStage, "PADS",   0xFFFF00);
+        this.ammoProgress =     new LabeledProgressBar(this.game.width - progressWidth, 40, progressWidth - rightMargin, progressHeight, this.pixiStage, "AMMO",   0x00FFFF);
+        this.padProgress =      new LabeledProgressBar(this.game.width - progressWidth, 55, progressWidth - rightMargin, progressHeight, this.pixiStage, "PADS",   0xFFFF00);
 
     }
 
@@ -363,7 +364,8 @@ class LevelScreen extends Screen {
         } else if (this.game.isOver()) {
             this.finalText.text = "TRY AGAIN";
             this.finalText.x = (this.game.width - this.finalText.width) / 2;
-            this.statusText.text = "";
+            this.statusText.text =
+                "AMMO: " + this.game.hero.ammo + "\n";
         } else {
             if (this.game.level.hasStarted) {
                 this.finalText.text = "";
@@ -376,8 +378,7 @@ class LevelScreen extends Screen {
 
                 this.finalText.x = (this.game.width - this.finalText.width) / 2;
             }
-            this.statusText.text =
-                "ETHER: " + this.game.hero.score + "\n";
+            this.statusText.text = "";
 
         }
 
@@ -387,6 +388,9 @@ class LevelScreen extends Screen {
 
         let shieldPercent = this.game.level.hero.shields / this.game.level.hero.maxShields;
         this.shileldProgress.setProgress(shieldPercent);
+
+        let ammoPercent = this.game.level.hero.ammo / this.game.level.hero.maxAmmo;
+        this.ammoProgress.setProgress(ammoPercent);
 
         let padPercent = (this.game.level.padsTotal - this.game.level.padsRemaining) / this.game.level.padsTotal;
         this.padProgress.setProgress(padPercent);

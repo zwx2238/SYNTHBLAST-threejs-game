@@ -3,7 +3,7 @@ import * as THREE from "../../lib/three/build/three.module.js";
 class Coin {
     constructor(x, y, scene) {
         this.scene = scene;
-        this.value = 20;
+        this.ammoValue = 2;
 
         let sizeFactor = 1;
 

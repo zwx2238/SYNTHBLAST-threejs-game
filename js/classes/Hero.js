@@ -25,9 +25,10 @@ class Hero {
         this.gun = null;
         this.maxHitPoints = 10;
         this.maxShields = 5;
+        this.maxAmmo = 100;
 
         // initial state
-        this.score = 10000;
+        this.ammo = 10;
         this.hitPoints = this.maxHitPoints;
         this.shields = 0;
         this.isFirstPerson = true;
@@ -88,7 +89,7 @@ class Hero {
     }
 
     update(fpsAdjustment) {
-        if (this.isShooting && this.score > 0) {
+        if (this.isShooting && this.ammo > 0) {
             this.gun.fire(true, fpsAdjustment);
         }
         this.move(fpsAdjustment);
@@ -126,6 +127,16 @@ class Hero {
             this.shields++;
             this.shield.visible = true;
         }
+    }
+
+    addAmmo(amount) {
+        this.ammo = Math.min(this.maxAmmo, this.ammo + amount);
+    }
+
+    useAmmo() {
+        if (this.ammo <= 0) return false;
+        this.ammo--;
+        return true;
     }
 
     changePerspective() {

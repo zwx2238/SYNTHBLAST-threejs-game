@@ -30,6 +30,7 @@ class Gun {
         // fired = this.shoot(bulletPosition, left, fpsAdjustment) || fired;
         // fired = this.shoot(bulletPosition, right, fpsAdjustment) || fired;
         if (fired) {
+            this.hero.useAmmo();
             this.lastFired = currentTime;
             if (soundOn) {
                 this.pew.currentTime = 0;

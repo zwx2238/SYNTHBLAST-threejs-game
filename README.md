@@ -16,18 +16,14 @@
 
 ## Gameplay
 
-
-
 * shoot tanks
 * Run over all yellow pads to advance a level
-* collect the ether they leave behind
+* collect the ammo they leave behind
 * Can you make it past level 7 (ZOMBIE MODE)?
 
 ## Q&A
-* Q: What does the ether do?
-  * A: nothing
-* Q:  Will ether ever do anything?
-  * A: Fork this game and make it do something!
+* Q: What do pickups do?
+  * A: Each pickup restores 2 ammo, up to 100.
 
 
 ## Installation

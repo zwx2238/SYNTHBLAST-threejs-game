@@ -474,7 +474,7 @@ class Level {
                     && Math.abs(coin.getY() - this.hero.getY()) < 0.4
                 ) {
                     coin.isTaken = true;
-                    this.game.hero.score += coin.value;
+                    this.game.hero.addAmmo(coin.ammoValue);
                     this.sounds.energy.currentTime = 0;
                     this.sounds.energy.play();
                 }
