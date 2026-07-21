@@ -64,15 +64,6 @@ class MenuScreen extends Screen {
         // );
         // y += buttonHeight + buttonSpacing;
 
-        //login
-        if (typeof FB !== 'undefined') {
-            this.elements.push(
-                new Button(x, y, buttonWidth, buttonHeight, this.pixiStage, "RESTORE PROGRESS", FB.login)
-            );
-            y += buttonHeight + buttonSpacing;
-        }
-
-
         if (this.isMobile) {
 
         } else {
