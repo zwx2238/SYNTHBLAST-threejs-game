@@ -7,7 +7,7 @@
   "geometries": [
     {
       "uuid": "19162029-B235-429E-8D64-E17ECCCD5FB6",
-      "type": "SphereBufferGeometry",
+      "type": "SphereGeometry",
       "radius": 1,
       "widthSegments": 8,
       "heightSegments": 6,
@@ -18,7 +18,7 @@
     },
     {
       "uuid": "2778539F-888E-46BE-9D02-4C2C5573262C",
-      "type": "SphereBufferGeometry",
+      "type": "SphereGeometry",
       "radius": 1,
       "widthSegments": 8,
       "heightSegments": 6,
@@ -29,7 +29,7 @@
     },
     {
       "uuid": "540FC3FE-849E-4CF4-A4C8-E35F336B71F6",
-      "type": "CylinderBufferGeometry",
+      "type": "CylinderGeometry",
       "radiusTop": 1,
       "radiusBottom": 1,
       "height": 1,
@@ -41,7 +41,7 @@
     },
     {
       "uuid": "4FC77BAA-BB37-44E0-9844-FC9C67AF225D",
-      "type": "SphereBufferGeometry",
+      "type": "SphereGeometry",
       "radius": 1,
       "widthSegments": 8,
       "heightSegments": 6,
@@ -52,7 +52,7 @@
     },
     {
       "uuid": "F970B8E2-F38C-484B-AED1-3DEF200C333D",
-      "type": "BoxBufferGeometry",
+      "type": "BoxGeometry",
       "width": 1,
       "height": 1,
       "depth": 1,
@@ -140,10 +140,11 @@
     {
       "uuid": "24E4A974-7EB7-4845-B760-AB42201790BD",
       "type": "MeshStandardMaterial",
-      "color": 0,
+      "color": 65535,
       "roughness": 0.5,
       "metalness": 0,
-      "emissive": 0,
+      "emissive": 65535,
+      "emissiveIntensity": 3,
       "depthFunc": 3,
       "depthTest": true,
       "depthWrite": true,

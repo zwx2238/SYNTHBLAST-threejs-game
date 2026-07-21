@@ -11,7 +11,7 @@ import Building from "../../js/classes/Building.js";
 import Gun from "../../js/classes/Gun.js";
 import Enemy from "../../js/classes/Enemy.js";
 // not importing so doesn't have to load
-// import Drone from "../../js/classes/Drone.js";
+import Drone from "../../js/classes/Drone.js";
 import Comet from "./Comet.js";
 import Coin from "../../js/classes/Coin.js";
 import Game from "./Game.js";
@@ -130,11 +130,8 @@ class Level {
             padsRemaining += 1;
         }
 
-        // drones
-        // for (let i = 0; i < 1; i++) {
-        //     let drone = new Drone( halfArena, 0, scene);
-        //     drones.push(drone);
-        // }
+        // Place one drone above the center of the arena.
+        drones.push(new Drone(halfArena, 0, scene, this));
 
         // add fence around the buildings
         for (let gridX = -1; gridX <= arenaSize; gridX++) {

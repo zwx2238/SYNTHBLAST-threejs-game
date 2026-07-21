@@ -2,7 +2,7 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
     build: {
-        chunkSizeWarningLimit: 550,
+        chunkSizeWarningLimit: 700,
         rolldownOptions: {
             output: {
                 manualChunks(id) {
