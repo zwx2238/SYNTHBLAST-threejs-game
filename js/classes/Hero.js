@@ -48,10 +48,13 @@ class Hero {
         // shield
         let dotMaterial = new THREE.PointsMaterial({
             color: 0x333366,
-            opacity: 0.1,
-            size: 0.025,
+            opacity: 1,
+            size: 0.05,
+            blending: THREE.AdditiveBlending,
+            transparent: true,
+            depthWrite: false,
         });
-        let sphereGeometry = new THREE.SphereGeometry(1.5, 24);
+        let sphereGeometry = new THREE.SphereGeometry(1.5, 50, 6);
         // Points should use each sphere vertex once, not its triangle index list.
         sphereGeometry.setIndex(null);
         let sphereDots = new THREE.Points(sphereGeometry, dotMaterial);

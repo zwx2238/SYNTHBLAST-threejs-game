@@ -6,10 +6,13 @@ class Shield {
             color: 0x333366,
             // color: 0xFFFFFF,
             // opacity: 0.1,
-            size: 0.025,
+            size: 0.05,
+            blending: THREE.AdditiveBlending,
+            transparent: true,
+            depthWrite: false,
             // fog: false
         });
-        let sphereGeometry = new THREE.SphereGeometry(0.3, 16);
+        let sphereGeometry = new THREE.SphereGeometry(0.3, 25, 6);
         sphereGeometry.setIndex(null);
         let object = new THREE.Points(sphereGeometry, dotMaterial);
         object.position.x = x;
