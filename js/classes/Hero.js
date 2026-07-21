@@ -29,6 +29,7 @@ class Hero {
 
         // initial state
         this.ammo = 10;
+        this.infiniteAmmo = false;
         this.hitPoints = this.maxHitPoints;
         this.shields = 0;
         this.isFirstPerson = true;
@@ -94,7 +95,7 @@ class Hero {
     }
 
     update(fpsAdjustment) {
-        if (this.isShooting && this.ammo > 0) {
+        if (this.isShooting && (this.infiniteAmmo || this.ammo > 0)) {
             this.gun.fire(true, fpsAdjustment);
         }
         this.move(fpsAdjustment);
@@ -139,9 +140,15 @@ class Hero {
     }
 
     useAmmo() {
+        if (this.infiniteAmmo) return true;
         if (this.ammo <= 0) return false;
         this.ammo--;
         return true;
+    }
+
+    enableInfiniteAmmo() {
+        this.infiniteAmmo = true;
+        this.ammo = this.maxAmmo;
     }
 
     changePerspective() {
@@ -274,7 +281,7 @@ class Hero {
     startShooting() {
         if (this.isShooting) return;
         this.isShooting = true;
-        if (this.ammo <= 0) {
+        if (!this.infiniteAmmo && this.ammo <= 0) {
             this.gun.playEmpty();
         }
     }

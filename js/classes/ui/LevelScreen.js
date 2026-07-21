@@ -304,6 +304,10 @@ class LevelScreen extends Screen {
             this.uiCallbacks.newGame();
             return;
         }
+        if (event.code === "KeyI") {
+            this.game.hero.enableInfiniteAmmo();
+            return;
+        }
         // making us pause a second at the beginning of a level
         if (((new Date()).getTime() - this.game.levelChangeTime) < 1000) return;
         if (!this.game.level.hasStarted) {
@@ -387,7 +391,9 @@ class LevelScreen extends Screen {
         let shieldPercent = this.game.level.hero.shields / this.game.level.hero.maxShields;
         this.shileldProgress.setProgress(shieldPercent);
 
-        let ammoPercent = this.game.level.hero.ammo / this.game.level.hero.maxAmmo;
+        let ammoPercent = this.game.level.hero.infiniteAmmo
+            ? 1
+            : this.game.level.hero.ammo / this.game.level.hero.maxAmmo;
         this.ammoProgress.setProgress(ammoPercent);
 
         let padPercent = (this.game.level.padsTotal - this.game.level.padsRemaining) / this.game.level.padsTotal;

@@ -12,10 +12,7 @@ class Building {
         if (!damageable) {
             material = new THREE.MeshBasicMaterial( { color: 0xDDDDDD} );
         }
-        // let wireframeMaterial = new THREE.LineBasicMaterial( { color: 0x000000} );
         let cube = new THREE.Mesh(geometry, material);
-        // let wireFrame = new THREE.Mesh(geometry, wireframeMaterial)
-        // cube.add(wireFrame);
         cube.position.x = x;
         cube.position.y = y;
         cube.position.z = height / 2;

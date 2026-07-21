@@ -1,9 +1,38 @@
 import * as THREE from "three";
+import {LineMaterial} from "three/examples/jsm/lines/LineMaterial.js";
+import {LineSegments2} from "three/examples/jsm/lines/LineSegments2.js";
+import {LineSegmentsGeometry} from "three/examples/jsm/lines/LineSegmentsGeometry.js";
+
+function addGlowEdges(mesh, geometry, color) {
+    const edges = new THREE.EdgesGeometry(geometry);
+    const edgeGeometry = new LineSegmentsGeometry().fromEdgesGeometry(edges);
+    edges.dispose();
+
+    [
+        {width: 7, opacity: 0.04},
+        {width: 4.5, opacity: 0.08},
+        {width: 2.5, opacity: 0.16},
+        {width: 1.5, opacity: 0.9}
+    ].forEach(layer => {
+        const material = new LineMaterial({
+            color: color,
+            linewidth: layer.width,
+            blending: THREE.AdditiveBlending,
+            transparent: true,
+            opacity: layer.opacity,
+            depthWrite: false,
+            toneMapped: false
+        });
+        mesh.add(new LineSegments2(edgeGeometry, material));
+    });
+}
 
 class Coin {
     constructor(x, y, scene) {
         this.scene = scene;
-        this.ammoValue = 2;
+        this.isEnhanced = Math.random() < 1 / 3;
+        this.ammoValue = this.isEnhanced ? 5 : 2;
+        const edgeColor = this.isEnhanced ? 0xFF00FF : 0x00FFFF;
 
         let sizeFactor = 1;
 
@@ -19,6 +48,7 @@ class Coin {
                 emissive: 0x550055
             });
         let cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+        addGlowEdges(cube, cubeGeometry, edgeColor);
         //cube.rotation.x = Math.PI / 4;
         cube.rotation.x = Math.PI / 2;
         // cube.position.x = x;
@@ -33,6 +63,7 @@ class Coin {
                 emissive: 0x330033
             });
         let bottom = new THREE.Mesh(bottomGeometry, bottomMaterial);
+        addGlowEdges(bottom, bottomGeometry, edgeColor);
         bottom.rotation.x = Math.PI / 2 * 3;
         bottom.position.z = .03;
 
